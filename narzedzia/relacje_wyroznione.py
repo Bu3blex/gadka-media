@@ -316,7 +316,7 @@ def aranz_okladka():
     paste_logo(im, W / 2, 210, 300)
     y = 1120
     y = pill(d, M, y, "ARANŻACJE", F("b", 30), center_w=W - 2 * M) + 34
-    y = text(d, M, y, "Ponad 15 klimatów w jednym studiu", F("b", 80), CREAM, W - 2 * M, lh=1.08, center=True)
+    y = text(d, M, y, "Jedno studio, wiele klimatów", F("b", 80), CREAM, W - 2 * M, lh=1.08, center=True)
     text(d, M, y + 20, "Przesuń i zobacz, jak może wyglądać Twoje nagranie", F("r", 38), MUTED, W - 2 * M, lh=1.3, center=True)
     return im
 
