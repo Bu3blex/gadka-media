@@ -144,7 +144,7 @@ REELS = {
     ], "Nagrywacie szkolenia dla zespołu? Zróbcie to raz, a porządnie 🎥\n\n👉 Mikrofon bezprzewodowy: trener chodzi, a dźwięk zostaje czysty\n👉 Panel ekspertów do 4 osób przy okrągłym stole\n👉 Spokojne tło, które nie odciąga uwagi\n👉 Pliki od ręki na dysk SSD, więc montaż rusza tego samego dnia\n\nCały dzień w studiu (8 h) to 1000 zł brutto.\n\n" + CTA_TXT + "\n\n" + HASH + " #filmfirmowy #szkoleniaonline"),
     "2026-11-10": ("kurs-online", lambda: [
         K.k_words(["POV:", "KURS NAGRANY", ("PRZY BIURKU", ORANGE)], 1.6),
-        K.k_words(["A MOGŁEŚ", ("TUTAJ 👇".replace(" 👇", ""), ORANGE)], 1.0, bg=ORANGE, fg=BLACK),
+        K.k_words(["A MOGŁEŚ", ("TUTAJ:", CREAM)], 1.0, bg=ORANGE, fg=BLACK),
         K.k_photo("102", 0.5, ["tutaj"]),
         K.k_photo("104", 0.5, ["albo tutaj"]),
         K.k_photo("101", 0.5, ["albo tutaj"]),

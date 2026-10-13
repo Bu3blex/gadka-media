@@ -159,7 +159,10 @@ def k_strike(title, items, final, dur, bg=BLACK):
     s = fit(title, W - 160, 110)
     mega(ImageDraw.Draw(tl), 80, 20, title, s, CREAM, bg=None)
     th = round(mega_h(title, s)) + 40
-    mk = marker(final, 124, angle=-3)
+    ms = 124
+    while ms > 60 and max(tw(FX(ms, True), l) for l in final) + 60 > W - 100:
+        ms -= 4
+    mk = marker(final, ms, angle=-3)
     n = len(items); step = BEAT
     t_final = 0.25 + n * step + 0.15
     pops = [0.25 + i * step for i in range(n)] + [t_final]
