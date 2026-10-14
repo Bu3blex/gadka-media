@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:IDB;src:url(fonts/InterDisplay-Black.otf)}
+@font-face{font-family:IDBI;src:url(fonts/InterDisplay-BlackItalic.otf)}
+@font-face{font-family:PopB;src:url(fonts/Poppins-Bold.ttf)}
+@font-face{font-family:PopM;src:url(fonts/Poppins-Medium.ttf)}
+*{box-sizing:border-box}
+html,body{margin:0;background:#000;width:1080px;height:1920px;overflow:hidden;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+#stage{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden;transform-origin:540px 960px}
+.abs{position:absolute}
+.card{position:absolute;left:44px;width:992px;border-radius:44px;padding:26px 30px 28px 30px;display:flex;gap:26px;align-items:flex-start;
+  background:rgba(38,34,32,.52);backdrop-filter:blur(34px) saturate(1.7);-webkit-backdrop-filter:blur(34px) saturate(1.7);
+  box-shadow:0 18px 50px rgba(0,0,0,.28);color:#fff;transform-origin:50% 0}
+.ic{width:104px;height:104px;border-radius:26px;flex:none;display:flex;align-items:center;justify-content:center;font-size:62px}
+.tx{flex:1;min-width:0}
+.hd{display:flex;justify-content:space-between;font-weight:600;font-size:38px;opacity:.95;margin-bottom:4px}
+.hd span:last-child{font-weight:400;opacity:.6;font-size:30px}
+.bd{font-size:46px;line-height:1.22;font-weight:450}
+.stk{position:absolute;left:0;width:1080px;text-align:center;white-space:nowrap}
+.mk{display:inline-block;background:#FF592A;color:#000;font-family:IDBI;padding:18px 34px 22px;line-height:1}
+.rc{font-family:'DejaVu Sans Mono',monospace;color:#111}
+</style></head>
+<body><div id="stage"></div>
+<img id="pre" src="img/wall.jpg" style="display:none">
+<div style="position:absolute;opacity:0"><span style="font-family:IDB">ą</span><span style="font-family:IDBI">ą</span><span style="font-family:PopB">ą</span><span style="font-family:PopM">ą</span><span style="font-family:Inter;font-weight:600">ą</span><span style="font-family:'DejaVu Sans Mono'">ą</span>😅🎙️📅💬🔋📦🫠✅</div>
+<script src="data.js"></script>
+<script src="anim.js"></script>
+</body></html>
