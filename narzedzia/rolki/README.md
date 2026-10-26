@@ -1,31 +1,37 @@
-# Silnik rolek (Reels 1080×1920)
+# Silnik animowanych rolek (Reels/TikTok 1080×1920)
 
-Każdy folder to jedna rolka. Obraz robi strona HTML w canvasie lub DOM z funkcją `window.renderAt(t)`. Dźwięk jest syntezowany w numpy, a całość składa się w MP4 przez Playwright i ffmpeg.
+Obraz powstaje w przeglądarce: canvas z funkcją `window.renderAt(t)`. Dźwięk jest syntezowany w numpy. Całość składa się w MP4 przez Playwright i ffmpeg.
 
-## Jak to działa
-1. `renderXX.py` ustala oś czasu (stałe w sekundach) i zapisuje ją do `data.js` jako `window.DATA`.
-2. Ten sam skrypt składa ścieżkę dźwiękową w numpy (44,1 kHz) i zapisuje `_mix.wav`.
-3. Odpala `python3 -m http.server <PORT>` w folderze rolki i Chromium przez Playwright z `--no-proxy-server` (Chromium jest w `/opt/pw-browsers`).
-4. Dla każdej klatki wywołuje `renderAt(t)`, robi zrzut JPEG i przekazuje go do ffmpeg (image2pipe, mjpeg, 30 fps, libx264, AAC).
-5. Podgląd wybranych klatek bez renderowania całości: `PREV=1.0,3.5,8.2 python3 renderXX.py`, wynik w `prev.jpg`.
-6. Wysyłka: przekoduj do około 7 Mb/s, żeby plik miał mniej niż 30 MB.
+## Szybki start
+```bash
+bash narzedzia/rolki/_szablon/przygotuj.sh /ścieżka/do/nowej_rolki   # szablon + fonty + logo + zdjęcia + szum
+cd /ścieżka/do/nowej_rolki
+bash klip.sh nagranie.mp4 klipA 3.5 4        # (opcjonalnie) własne nagranie -> klatki 1080x1920 + wav
+SAFE=1 PREV=1,4,9 python3 render.py          # podgląd klatek z ramką strefy bezpiecznej -> prev.jpg
+COVER=1 python3 render.py                    # okładka -> okladka.jpg
+python3 render.py                            # pełny render -> rolka.mp4 i rolka_ig.mp4 (<30 MB)
+```
 
-## Wymagane w folderze rolki
-- `img/`: zdjęcia studia (u Gadki 1800×1013) i `noise.png`.
-- `fonts/`: kopie Inter Display (`/usr/share/fonts/opentype/inter/`).
-- `logo.png` i `logo_black.png`.
-
-Pliki `img/`, `fonts/` i logo nie są w tym folderze, trzeba je skopiować przed renderem.
+## Zasady
+- **Strefa bezpieczna rolki:** x 120–960, y 280–1580. Poza nią mogą być tylko tło i dekoracje.
+- **Okładka:** wszystko w kwadracie y 420–1500, x 100–980.
+- **Długość:** 20–25 s. Hak w pierwszej sekundzie. Sceny wchodzą na uderzenia muzyki.
+- **Zawsze** oglądaj podgląd przed pełnym renderem.
 
 ## Gotowe koncepty (Gadka studio)
 | folder | pomysł | stylistyka i dźwięk |
 |---|---|---|
 | pov_powiadomienia | powiadomienia na ekranie blokady, paragon | ciemny UI telefonu, deep house |
 | koszyk | koszyk sprzętu za tysiące zł kontra Gadka 300 zł | kremowy UI sklepu, deep house |
-| match | swipe: odrzucamy „szybki zarobek”, match z Gadką | śliwkowo-różowy, lo-fi Rhodes |
-| rpg_8bit | gra RPG: ekwipunek, skrzynia, level up | pixel art 270×480 ×4, chiptune |
-| zwiastun | zwiastun kinowy, BRAAAM, „WKRÓTCE → JUŻ JUTRO” | kino w pasach, ziarno taśmy |
-| pogoda | prognoza pogody dla twórców, mapa mieszkania | grafika TV, funk |
-| okup_kolaz | „Mamy Twój podcast”, list z żądaniem okupu | kolaż poklatkowy 12 kl./s, jazz |
-| instrukcja | instrukcja montażu podcastu | czarna kreska, ludziki, dzwonki |
-| muzeum | muzeum niedokończonych podcastów | galeria, pianino z pogłosem (za długie, za mało dopracowane) |
+| match | swipe: „szybki zarobek” w lewo, match z Gadką | śliwkowo-różowy, lo-fi Rhodes |
+| rpg_8bit | gra RPG: ekwipunek, skrzynia, level up | pixel art, chiptune |
+| zwiastun | zwiastun kinowy, „WKRÓTCE → JUŻ JUTRO” | kino w pasach, BRAAAM |
+| pogoda | prognoza pogody dla twórców | grafika TV, funk |
+| okup_kolaz | „Mamy Twój podcast”, list z żądaniem okupu | kolaż poklatkowy, jazz |
+| instrukcja | instrukcja montażu podcastu | czarna kreska, dzwonki |
+| muzeum | muzeum niedokończonych podcastów | galeria (za długie, za mało dopracowane) |
+| podsumowanie | podsumowanie roku jako podcaster | kolorowe karty, electro-pop |
+| tarot | 3 karty: przeszłość, teraźniejszość, przyszłość | granat i złoto, harfa, ciepły finał |
+| okladki | skrypty okładek: typografia (`final_a.py`) i okładki z silnika (`cover_snap.py`) | |
+
+Zdjęcia studia są w `zrodla/` (numery P1160xxx → `img/xxx.jpg`), a logo z przezroczystym tłem w `marka/`.
