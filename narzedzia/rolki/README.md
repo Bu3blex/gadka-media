@@ -32,6 +32,7 @@ python3 render.py                            # pełny render -> rolka.mp4 i rolk
 | muzeum | muzeum niedokończonych podcastów | galeria (za długie, za mało dopracowane) |
 | podsumowanie | podsumowanie roku jako podcaster | kolorowe karty, electro-pop |
 | tarot | 3 karty: przeszłość, teraźniejszość, przyszłość | granat i złoto, harfa, ciepły finał |
+| noc | „Ty o 2:37 w nocy”: zapytania w wyszukiwarce, wynik Gadka studio | ciemny UI, nocny synthwave, stukot klawiatury |
 | okladki | skrypty okładek: typografia (`final_a.py`) i okładki z silnika (`cover_snap.py`) | |
 
 Zdjęcia studia są w `zrodla/` (numery P1160xxx → `img/xxx.jpg`), a logo z przezroczystym tłem w `marka/`.
