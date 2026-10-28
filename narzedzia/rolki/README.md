@@ -37,6 +37,7 @@ python3 render.py                            # pełny render -> rolka.mp4 i rolk
 | przepis | „Przepis na podcast”: składniki do garnka, kroki, „nie w kuchni!” | kremowy papier, Lora italic, bossa nova |
 | flagi | „Red flags vs green flags” (18–30) | neo-brutalizm – oceniony jako „lipny, niemłodzieżowy”, nie powtarzać |
 | capcut | „ziomek nagrywa podcast w łazience 💀” (18–30) | styl TikTok/CapCut: napisy słowo po słowie, punch zoomy, drill z dropem |
+| jedno_studio | „Jedno studio. Wiele możliwości.” z prawdziwych nagrań: hook z trzech szerokich planów, po jednym ujęciu z aranżacji, sprzęt, cena | minimalizm z klasą: mało tekstu, kapitaliki + pomarańczowa kreska, miękkie przejścia, elegancki deep house |
 | okladki | skrypty okładek: typografia (`final_a.py`) i okładki z silnika (`cover_snap.py`) | |
 
 Zdjęcia studia są w `zrodla/` (numery P1160xxx → `img/xxx.jpg`), a logo z przezroczystym tłem w `marka/`.
@@ -49,3 +50,5 @@ Pomysły do wykorzystania:
 - Najlepsze momenty i śmieszne wpadki z rozmów + napisy słowo po słowie (CapCut) z prawdziwym głosem.
 - Hak z najmocniejszego zdania z rozmowy, potem korzyści i cena.
 Nie podawać liczby aranżacji (zasada klienta). Nagrania pionowe na pełen ekran, poziome w ramkach.
+
+Otrzymane nagrania (2026-10-28, pionowe 1080×1920, 24 kl./s, cichy dźwięk w tle): BIALA_KOSTKA, CIEMNA_ZASLONA, LAMELE, STOL_RADIOWY (Marcysia/Wiktor, ujęcia 1–2), LAMELE_WIKTOR_KADR_JEDNOOSOBOWY (z kamerą w kadrze), UJECIE_NA_SZEROKI_KADR_1 (trzy szerokie plany jeden nad drugim) i _2/_3 (zbliżenie + szeroki plan). Przy nagraniach klient chce: używać tylko pasujących ujęć, klimat promocyjny, nowocześnie, z klasą i gustem, bez nadmiaru tekstu i pstrokatych efektów, zawsze z logo i kolorami marki.
