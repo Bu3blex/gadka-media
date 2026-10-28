@@ -40,3 +40,12 @@ python3 render.py                            # pełny render -> rolka.mp4 i rolk
 | okladki | skrypty okładek: typografia (`final_a.py`) i okładki z silnika (`cover_snap.py`) | |
 
 Zdjęcia studia są w `zrodla/` (numery P1160xxx → `img/xxx.jpg`), a logo z przezroczystym tłem w `marka/`.
+
+## Nadchodzące materiały (od klienta)
+Klient dośle wiele nagrań osób siedzących w Gadka studio i rozmawiających ze sobą (prowadzą podcast), nagranych przy różnych ścianach i aranżacjach. Cel: pokazać wszystko, co wyróżnia studio (różne klimaty wnętrza, sprzęt, komfort rozmowy).
+Pomysły do wykorzystania:
+- „Jedna rozmowa, wiele klimatów”: ta sama rozmowa leci dalej, a przy każdym cięciu zmienia się ściana/scenografia (cięcia na gest lub słowo).
+- „Wybierz swój klimat”: przewijanie aranżacji jak wybór motywu/filtra, z nazwą klimatu na naklejce.
+- Najlepsze momenty i śmieszne wpadki z rozmów + napisy słowo po słowie (CapCut) z prawdziwym głosem.
+- Hak z najmocniejszego zdania z rozmowy, potem korzyści i cena.
+Nie podawać liczby aranżacji (zasada klienta). Nagrania pionowe na pełen ekran, poziome w ramkach.
