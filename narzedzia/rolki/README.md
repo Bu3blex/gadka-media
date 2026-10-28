@@ -40,6 +40,7 @@ python3 render.py                            # pełny render -> rolka.mp4 i rolk
 | jedno_studio | „Jedno studio. Wiele możliwości.” z prawdziwych nagrań: hook z trzech szerokich planów, po jednym ujęciu z aranżacji, sprzęt, cena | minimalizm z klasą: mało tekstu, kapitaliki + pomarańczowa kreska, miękkie przejścia, elegancki deep house |
 | plansze_nagrania | „Jeden podcast. Wiele scenografii.”: kremowa plansza ↔ nagranie w pełnym kadrze, sprzęt jak karta produktu, cena | jasny, magazynowy, nu-disco |
 | rezerwacja | „Ty mówisz. My nagrywamy.” z nagrań: 4 kroki (kalendarz → klimat → nagrywasz → SSD), mocne CTA „Zarezerwuj termin” | duże numery kroków, plansze kalendarza i SSD, house z pianinem |
+| zgadnij_cene | teleturniej „Ile kosztuje nagranie tutaj?”: 4 podpowiedzi na nagraniach, pytanie A/B/C z odliczaniem, POW „300 zł”, CTA + „napisz, ile obstawiałeś” (komentarze) | ciemne plansze quizu, krem w finale, tik-tak i napięcie → funk po odpowiedzi |
 | okladki | skrypty okładek: typografia (`final_a.py`) i okładki z silnika (`cover_snap.py`) | |
 
 Zdjęcia studia są w `zrodla/` (numery P1160xxx → `img/xxx.jpg`), a logo z przezroczystym tłem w `marka/`.
