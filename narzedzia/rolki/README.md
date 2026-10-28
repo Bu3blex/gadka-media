@@ -39,6 +39,7 @@ python3 render.py                            # pełny render -> rolka.mp4 i rolk
 | capcut | „ziomek nagrywa podcast w łazience 💀” (18–30) | styl TikTok/CapCut: napisy słowo po słowie, punch zoomy, drill z dropem |
 | jedno_studio | „Jedno studio. Wiele możliwości.” z prawdziwych nagrań: hook z trzech szerokich planów, po jednym ujęciu z aranżacji, sprzęt, cena | minimalizm z klasą: mało tekstu, kapitaliki + pomarańczowa kreska, miękkie przejścia, elegancki deep house |
 | plansze_nagrania | „Jeden podcast. Wiele scenografii.”: kremowa plansza ↔ nagranie w pełnym kadrze, sprzęt jak karta produktu, cena | jasny, magazynowy, nu-disco |
+| rezerwacja | „Ty mówisz. My nagrywamy.” z nagrań: 4 kroki (kalendarz → klimat → nagrywasz → SSD), mocne CTA „Zarezerwuj termin” | duże numery kroków, plansze kalendarza i SSD, house z pianinem |
 | okladki | skrypty okładek: typografia (`final_a.py`) i okładki z silnika (`cover_snap.py`) | |
 
 Zdjęcia studia są w `zrodla/` (numery P1160xxx → `img/xxx.jpg`), a logo z przezroczystym tłem w `marka/`.
