@@ -18,11 +18,11 @@ FPS, SR = 30, 44100
 
 # ---------------- OŚ CZASU (100 BPM, cięcie co takt = 2,4 s)
 BPM = 100; B = 60 / BPM; BAR = 4 * B
-names = ["board", "hook", "a1", "a2", "a3", "a4", "e1", "e2"]
+names = ["hook", "a1", "a2", "a3", "a4", "e1", "e2"]
 SHOTS = [[i * BAR, n] for i, n in enumerate(names)]
 FIN = len(names) * BAR
 TOTAL = FIN + 2 * BAR
-DATA = dict(SC=[0.0], TOTAL=TOTAL, PHOTOS=[], SHOTS=SHOTS, FIN=FIN, BAR=BAR)
+DATA = dict(SC=[0.0], TOTAL=TOTAL, PHOTOS=[], SHOTS=SHOTS, FIN=FIN, BAR=BAR, B=B)
 open(os.path.join(WD, "data.js"), "w").write("window.DATA=" + json.dumps(DATA, ensure_ascii=False) + ";")
 
 # ---------------- BIBLIOTEKA DŹWIĘKÓW
@@ -84,7 +84,8 @@ for b in range(nb):
         for k, f in enumerate(c[1:4]): add(rhodes(f * 2, 0.8, 0.03), x + B / 2 + k * 0.01, 1, wet)
 # ---------------- EFEKTY (subtelne)
 for t0, n in SHOTS[1:]: add(lpf(whoosh(0.5, 0.18), 3), t0 - 0.35)
-add(pop(600, 0.2), 0.3); add(kick(0.7), 0.3)
+for k in range(3): add(lpf(whoosh(0.25, 0.3), 3), k * B / 2 - 0.1); add(rim(0.25), k * B / 2)
+add(kick(0.95), 1.5 * B); add(braam(55, 1.4, 0.35), 1.5 * B)
 add(kick(0.8), 0.0); add(pop(700, 0.25), 0.35); add(kick(0.7), 0.35)
 for k, f in enumerate([880.0, 1108.73]): add(bell(f, 1.2, 0.08), 0.4 + k * 0.06, 1, wet)
 add(lpf(whoosh(0.6, 0.22), 3), FIN - 0.4)

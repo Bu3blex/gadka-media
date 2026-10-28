@@ -113,11 +113,20 @@ window.renderAt = async function (t) {
     }
     const p = i > 0 && SH[i - 1][1] !== 'board' ? eio(lt / 0.45) : 1;
     if (p < 1) await clip(SH[i - 1][1], t - SH[i - 1][0]);
-    await clip(name, lt, p, 40 * (1 - p));
-    vignette();
+    if (name === 'hook') { // trzy kadry odsłaniają się po kolei na uderzenia
+      for (let k = 0; k < 3; k++) {
+        const w = eio((t - k * D.B / 2) / 0.26); if (w <= 0) continue;
+        cx.save(); cx.beginPath(); cx.rect(0, k * 640, W * w, 640 + (k === 2 ? 0 : 1)); cx.clip(); await clip('hook', lt); cx.restore();
+      }
+      const g = cx.createLinearGradient(0, 1250, 0, H); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.55)'); cx.fillStyle = g; cx.fillRect(0, 1250, W, H - 1250);
+    } else { await clip(name, lt, p, 40 * (1 - p)); vignette(); }
     if (name === 'hook') {
-      rise('Jedno studio.', SAFE.L, 1400, '118px Light', CR, t, t0 + 0.2);
-      rise('Wiele możliwości.', SAFE.L, 1525, '86px Semi', OR, t, t0 + 0.7);
+      const tp = 1.5 * D.B; // cena na 4. półuderzenie (0,9 s)
+      if (t >= tp) { const sc = 1 + 0.12 * (1 - eo((t - tp) / 0.35)), al = clamp((t - tp) / 0.15);
+        cx.save(); cx.globalAlpha = al; cx.translate(540, 1450); cx.scale(sc, sc);
+        cx.shadowColor = 'rgba(0,0,0,.55)'; cx.shadowBlur = 30;
+        txt('2 godziny', 0, -78, { font: '92px Light', col: CR, al: 'center' });
+        txt('300 zł', 0, 48, { font: '150px Blk', col: OR, al: 'center' }); cx.restore(); }
     } else {
       const [lab, top] = META[name];
       label(lab, t, t0 + 0.25, null);
