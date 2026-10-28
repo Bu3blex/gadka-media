@@ -17,6 +17,7 @@ python3 render.py                            # pełny render -> rolka.mp4 i rolk
 - **Okładka:** wszystko w kwadracie y 420–1500, x 100–980.
 - **Długość:** 20–25 s. Hak w pierwszej sekundzie. Sceny wchodzą na uderzenia muzyki.
 - **Zawsze** oglądaj podgląd przed pełnym renderem.
+- Poziome zdjęcia (1800×1013) przycięte na cały pionowy ekran tracą treść i źle się kadrują (uwaga klienta przy `capcut`). Pełny ekran tylko z pionowych ujęć/nagrań, poziome zdjęcia w ramkach, kartach i oknach.
 
 ## Gotowe koncepty (Gadka studio)
 | folder | pomysł | stylistyka i dźwięk |
