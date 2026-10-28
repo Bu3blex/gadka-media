@@ -137,7 +137,7 @@ window.renderAt = async function (t) {
       const [lab, top] = META[name];
       label(lab, t, t0 + 0.2, top);
     }
-    cx.save(); cx.globalAlpha = 0.97; cx.shadowColor = 'rgba(0,0,0,.4)'; cx.shadowBlur = 20; cx.drawImage(IM.logo, 540 - 130, 290, 260, 260 * IM.logo.height / IM.logo.width); cx.restore();
+    cx.save(); cx.globalAlpha = 0.97; cx.shadowColor = 'rgba(0,0,0,.4)'; cx.shadowBlur = 20; cx.drawImage(IM.logo, 540 - 115, 165, 230, 230 * IM.logo.height / IM.logo.width); cx.restore();
   } else {
     const lf = t - FIN;
     await clip('fin', lf, 1, 0, 18);
