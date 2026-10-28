@@ -80,21 +80,23 @@ function rise(s, x, y, font, col, t, t0, o = {}) { // elegancki fade + uniesieni
   if (t < t0) return; const p = eo((t - t0) / 0.6);
   txt(s, x, y + 26 * (1 - p), Object.assign({ font, col, a: p * (o.a ?? 1) }, o));
 }
-function label(name, t, t0, top) { // mała etykieta: kreska + kapitaliki
-  if (t < t0) return; const p = eo((t - t0) / 0.6);
+function label(name, t, t0, sub) { // duży napis: co to jest + dlaczego
+  if (t < t0) return; const p = eo((t - t0) / 0.45);
   cx.save(); cx.globalAlpha = p;
-  cx.fillStyle = OR; cx.fillRect(SAFE.L, 1440, 70 * p, 5);
-  txt(name, SAFE.L, 1505 + 14 * (1 - p), { font: '58px Semi', col: CR, sp: 8 });
-  if (top) txt(top, SAFE.L, 1395, { font: '28px Semi', col: 'rgba(249,238,228,.7)', sp: 8 });
+  cx.fillStyle = OR; cx.fillRect(SAFE.L, 1300, 90 * p, 7);
+  let fs = 104; cx.font = `${fs}px Blk`; while (cx.measureText(name).width > SAFE.R - SAFE.L && fs > 60) { fs -= 4; cx.font = `${fs}px Blk`; }
+  txt(name, SAFE.L, 1390 + 18 * (1 - p), { font: `${fs}px Blk`, col: '#fff' });
+  if (sub) { const p2 = eo((t - t0 - 0.2) / 0.45); txt(sub, SAFE.L, 1490 + 18 * (1 - p2), { font: '56px Semi', col: CR, a: p2 }); }
   cx.restore();
 }
 function vignette() {
-  const g = cx.createLinearGradient(0, 1000, 0, H); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.72)'); cx.fillStyle = g; cx.fillRect(0, 1050, W, H - 1050);
+  const g = cx.createLinearGradient(0, 950, 0, H); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.8)'); cx.fillStyle = g; cx.fillRect(0, 1050, W, H - 1050);
   const g2 = cx.createLinearGradient(0, 0, 0, 520); g2.addColorStop(0, 'rgba(0,0,0,.35)'); g2.addColorStop(1, 'rgba(0,0,0,0)'); cx.fillStyle = g2; cx.fillRect(0, 0, W, 520);
 }
 const META = {
-  a1: ['BIAŁA KOSTKA'], a2: ['CIEMNA ZASŁONA'], a3: ['STÓŁ RADIOWY'], a4: ['LAMELE'],
-  e1: ['DWIE KAMERY 4K', 'SPRZĘT W CENIE'], e2: ['MIKROFONY SHURE', 'SPRZĘT W CENIE'],
+  a1: ['Biała kostka', 'jasny, świeży klimat'], a2: ['Ciemna zasłona', 'kameralnie i elegancko'],
+  a3: ['Stół radiowy', 'jak w prawdziwym radiu'], a4: ['Lamele', 'ciepło i nowocześnie'],
+  e1: ['2 kamery 4K', 'obraz gotowy do publikacji'], e2: ['Mikrofony Shure', 'brzmisz jak profesjonalista'],
 };
 
 window.renderAt = async function (t) {
@@ -115,25 +117,27 @@ window.renderAt = async function (t) {
     if (p < 1) await clip(SH[i - 1][1], t - SH[i - 1][0]);
     if (name === 'hook') { // trzy kadry odsłaniają się po kolei na uderzenia
       for (let k = 0; k < 3; k++) {
-        const w = eio((t - k * D.B / 2) / 0.26); if (w <= 0) continue;
+        const w = eio((t - k * 0.1) / 0.16); if (w <= 0) continue;
         cx.save(); cx.beginPath(); cx.rect(0, k * 640, W * w, 640 + (k === 2 ? 0 : 1)); cx.clip(); await clip('hook', lt); cx.restore();
       }
       const g = cx.createLinearGradient(0, 1250, 0, H); g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.55)'); cx.fillStyle = g; cx.fillRect(0, 1250, W, H - 1250);
     } else { await clip(name, lt, p, 40 * (1 - p)); vignette(); }
     if (name === 'hook') {
-      const tp = 1.5 * D.B; // cena na 4. półuderzenie (0,9 s)
-      if (t >= tp) { const sc = 1 + 0.12 * (1 - eo((t - tp) / 0.35)), al = clamp((t - tp) / 0.15);
-        cx.save(); cx.globalAlpha = al; cx.translate(540, 1450); cx.scale(sc, sc);
-        cx.shadowColor = 'rgba(0,0,0,.55)'; cx.shadowBlur = 30;
-        txt('2 godziny', 0, -78, { font: '92px Light', col: CR, al: 'center' });
-        txt('300 zł', 0, 48, { font: '150px Blk', col: OR, al: 'center' }); cx.restore(); }
+      const tp = 0.42; // cena wybucha na środku
+      if (t >= tp) { const sc = ob((t - tp) / 0.32, 2.6), sh = Math.sin((t - tp) * 70) * 8 * clamp(1 - (t - tp) / 0.25);
+        cx.save(); cx.fillStyle = `rgba(0,0,0,${0.45 * clamp((t - tp) / 0.2)})`; cx.fillRect(0, 0, W, H); cx.restore();
+        cx.save(); cx.translate(540 + sh, 930); cx.scale(sc, sc);
+        cx.shadowColor = 'rgba(0,0,0,.6)'; cx.shadowBlur = 40;
+        txt('2 godziny', 0, -150, { font: '120px Light', col: '#fff', al: 'center' });
+        txt('300 zł', 0, 40, { font: '235px Blk', col: OR, al: 'center' }); cx.restore(); }
+      if (t >= tp + 0.55) { const p = eo((t - tp - 0.55) / 0.4); cx.save(); cx.globalAlpha = p;
+        cx.fillStyle = CR; cx.beginPath(); cx.roundRect(540 - 400, 1215 + 20 * (1 - p), 800, 110, 55); cx.fill();
+        txt('Wynajmij studio podcastowe', 540, 1272 + 20 * (1 - p), { font: '54px XB', col: BK, al: 'center' }); cx.restore(); }
     } else {
       const [lab, top] = META[name];
-      label(lab, t, t0 + 0.25, null);
-      const sect = name[0] === 'a' ? 'WYBIERZ ARANŻACJĘ' : 'SPRZĘT W CENIE';
-      txt(sect, SAFE.L, 352, { font: '34px Semi', col: CR, sp: 7, a: 0.9 });
+      label(lab, t, t0 + 0.2, top);
     }
-    cx.save(); cx.globalAlpha = 0.95; cx.drawImage(IM.logo, SAFE.R - 170, 322, 170, 170 * IM.logo.height / IM.logo.width); cx.restore();
+    cx.save(); cx.globalAlpha = 0.97; cx.shadowColor = 'rgba(0,0,0,.4)'; cx.shadowBlur = 20; cx.drawImage(IM.logo, 540 - 130, 290, 260, 260 * IM.logo.height / IM.logo.width); cx.restore();
   } else {
     const lf = t - FIN;
     await clip('fin', lf, 1, 0, 18);
@@ -141,7 +145,7 @@ window.renderAt = async function (t) {
     if (lf > 0.15) { const p = eo((lf - 0.15) / 0.7); cx.save(); cx.globalAlpha = p; const lw = 440; cx.drawImage(IM.logo, 540 - lw / 2, 470 + 20 * (1 - p), lw, lw * IM.logo.height / IM.logo.width); cx.restore(); }
     rise('2 godziny', 540, 830, '96px Light', CR, t, FIN + 0.6, { al: 'center' });
     rise('300 zł', 540, 990, '200px Blk', OR, t, FIN + 0.9, { al: 'center' });
-    rise('BRUTTO  ·  SPRZĘT W CENIE', 540, 1135, '36px Semi', CR, t, FIN + 1.3, { al: 'center', sp: 6 });
+    rise('27 m²  ·  SPRZĘT W CENIE', 540, 1135, '40px Semi', CR, t, FIN + 1.3, { al: 'center', sp: 6 });
     if (lf > 1.7) { const p = eo((lf - 1.7) / 0.6); cx.fillStyle = OR; cx.fillRect(540 - 60 * p, 1240, 120 * p, 4); }
     rise('gadkastudio.pl', 540, 1330, '52px Semi', CR, t, FIN + 1.9, { al: 'center', sp: 3 });
     rise('Warszawa', 540, 1400, '34px Light', 'rgba(249,238,228,.75)', t, FIN + 2.1, { al: 'center', sp: 6 });
