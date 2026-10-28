@@ -18,7 +18,7 @@ FPS, SR = 30, 44100
 
 # ---------------- OŚ CZASU (100 BPM, cięcie co takt = 2,4 s)
 BPM = 100; B = 60 / BPM; BAR = 4 * B
-names = ["hook", "a1", "a2", "a3", "a4", "e1", "e2"]
+names = ["board", "hook", "a1", "a2", "a3", "a4", "e1", "e2"]
 SHOTS = [[i * BAR, n] for i, n in enumerate(names)]
 FIN = len(names) * BAR
 TOTAL = FIN + 2 * BAR
@@ -72,7 +72,7 @@ RT = [55.0, 43.65, 65.41, 49.0]
 nb = int(TOTAL / B)
 for b in range(nb):
     x = b * B; bar = (b // 4) % 4; c = CH[bar]
-    intro = x < BAR
+    intro = x < 0.5 * BAR
     if not intro: add(kick(0.6), x, 1, mus)
     if b % 2 == 1: add(rim(0.14), x, 1, mus)
     add(shk(0.06), x + B / 2, 1, mus); add(shk(0.035), x + B / 4, 1, mus); add(shk(0.035), x + 3 * B / 4, 1, mus)
@@ -84,6 +84,9 @@ for b in range(nb):
         for k, f in enumerate(c[1:4]): add(rhodes(f * 2, 0.8, 0.03), x + B / 2 + k * 0.01, 1, wet)
 # ---------------- EFEKTY (subtelne)
 for t0, n in SHOTS[1:]: add(lpf(whoosh(0.5, 0.18), 3), t0 - 0.35)
+add(pop(600, 0.2), 0.3); add(kick(0.7), 0.3)
+add(kick(0.8), 0.0); add(pop(700, 0.25), 0.35); add(kick(0.7), 0.35)
+for k, f in enumerate([880.0, 1108.73]): add(bell(f, 1.2, 0.08), 0.4 + k * 0.06, 1, wet)
 add(lpf(whoosh(0.6, 0.22), 3), FIN - 0.4)
 for k, f in enumerate([440.0, 523.25, 659.25, 880.0]): add(bell(f, 2.0, 0.07), FIN + 0.9 + k * 0.08, 1, wet)
 

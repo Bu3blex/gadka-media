@@ -69,7 +69,7 @@ function grain(t, a = 0.07) {
 
 // ---------- ROLKA: „Jedno studio. Wiele możliwości.” – minimalistycznie i z klasą
 const SH = D.SHOTS, FIN = D.FIN, BAR = D.BAR;
-const N = { hook: 79, a1: 79, a2: 79, a3: 80, a4: 79, e1: 79, e2: 79, fin: 150 };
+const N = { hook: 151, a1: 79, a2: 79, a3: 80, a4: 79, e1: 79, e2: 79, fin: 150 };
 async function clip(name, lt, a = 1, dy = 0, blur = 0) {
   const im = await frame(name, Math.min(N[name] - 1, Math.max(0, Math.floor(lt * 30)))); if (!im) return;
   const s = 1.0 + 0.016 * lt;
@@ -103,13 +103,21 @@ window.renderAt = async function (t) {
   const [t0, name] = SH[i], lt = t - t0;
   if (t < FIN) {
     // miękkie przejście: poprzednie ujęcie gaśnie, nowe wjeżdża z delikatnym uniesieniem
-    const p = i > 0 ? eio(lt / 0.45) : 1;
+    if (name === 'board') { // hak: plansza z ceną
+      cx.fillStyle = BK; cx.fillRect(0, 0, W, H);
+      rise('2 godziny.', SAFE.L, 820, '150px Light', CR, t, 0.0);
+      rise('300 zł.', SAFE.L, 1010, '230px Blk', OR, t, 0.3);
+      rise('STUDIO PODCASTOWE  ·  WARSZAWA', SAFE.L, 1190, '36px Semi', CR, t, 0.7, { sp: 6 });
+      cx.save(); cx.globalAlpha = 0.95; cx.drawImage(IM.logo, SAFE.R - 170, 322, 170, 170 * IM.logo.height / IM.logo.width); cx.restore();
+      grain(t, 0.045); return;
+    }
+    const p = i > 0 && SH[i - 1][1] !== 'board' ? eio(lt / 0.45) : 1;
     if (p < 1) await clip(SH[i - 1][1], t - SH[i - 1][0]);
     await clip(name, lt, p, 40 * (1 - p));
     vignette();
     if (name === 'hook') {
-      rise('Jedno studio.', SAFE.L, 1400, '118px Light', CR, t, 0.2);
-      rise('Wiele możliwości.', SAFE.L, 1525, '86px Semi', OR, t, 0.9);
+      rise('Jedno studio.', SAFE.L, 1400, '118px Light', CR, t, t0 + 0.2);
+      rise('Wiele możliwości.', SAFE.L, 1525, '86px Semi', OR, t, t0 + 0.7);
     } else {
       const [lab, top] = META[name];
       label(lab, t, t0 + 0.25, null);
